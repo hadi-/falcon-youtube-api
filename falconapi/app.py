@@ -32,8 +32,6 @@ class Detail(object):
 
 #search youtube
 def youtube_search(object):
-    # Call the search.list method to retrieve results matching the specified
-    # query term.
     search_response = youtube.search().list(
         q=object,
         part="id,snippet",
@@ -42,32 +40,20 @@ def youtube_search(object):
 
     videos = []
 
-    # Add each result to the appropriate list, and then display the lists of
-    # matching videos, channels, and playlists.
     for search_result in search_response.get("items", []):
         if search_result["id"]["kind"] == "youtube#video":
             videos.append({'title' : search_result["snippet"]["title"],
             'videoid' : search_result["id"]["videoId"]})
 
     return json.dumps(videos, encoding='utf-8')
-
+# get detail video by ID
 def youtube_get_detail(object):
-    # Call the search.list method to retrieve results matching the specified
-    # query term.
     search_response = youtube.videos().list(
         id=object,
         part="snippet,contentDetails,statistics",
     ).execute()
 
     videos = search_response.get("items", [])
-
-    # Add each result to the appropriate list, and then display the lists of
-    # matching videos, channels, and playlists.
-    # for search_result in search_response.get("items", []):
-    #     if search_result["id"]["kind"] == "youtube#video":
-    #         videos.append({'title' : search_result["snippet"]["title"],
-    #         'videoid' : search_result["id"]["videoId"]})
-
     return json.dumps(videos, encoding='utf-8')
 
 
