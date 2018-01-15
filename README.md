@@ -19,5 +19,5 @@ http://localhost:8000/?q=python
 
 # get detail video 
 ```
-http://localhost:8000/details/Ucj4aAM
+http://localhost:8000/details/VtF-Ucj4aAM
 ```
